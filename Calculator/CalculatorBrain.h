@@ -12,6 +12,9 @@
 
 - (void)pushOperand:(double)operand;
 - (double)performOperation:(NSString *)operation;
+- (double)performVariable:(NSString *)variable
+      usingVariableValues:(NSDictionary *)variablesDictionary;
+
 - (void)emptyStack;
 - (NSString *)stackDescription;
 
@@ -22,7 +25,9 @@
 + (double)runProgram:(id)program;
 + (double)runProgram:(id)program
     usingVariableValues:(NSDictionary *)variableValues;
-+ (NSSet *)variablesUsedInProgram:(id)program;
++ (NSSet *)variablesUsedInProgram:(id)program
+        usingVariableValues:(NSDictionary *)variableValues;
+;
 
 
 

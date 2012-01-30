@@ -9,7 +9,6 @@
 #import "CalculatorBrain.h"
 #define PI 3.1416
 
-static NSDictionary *dictionaryOfVariables = nil;
 
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *operandStack;
@@ -32,15 +31,7 @@ static NSDictionary *dictionaryOfVariables = nil;
     return _operandStack;
 }
 
-+ (void) initialize
-{
-    if (!dictionaryOfVariables) {
-        dictionaryOfVariables = [[NSDictionary alloc] initWithObjectsAndKeys:
-            [NSNumber numberWithDouble:(double)0], @"x", 
-            [NSNumber numberWithDouble:(double)0], @"y", 
-            [NSNumber numberWithDouble:(double)0], @"z", nil];
-    }
-}
+
 
 
 - (id)program
@@ -74,7 +65,7 @@ static NSDictionary *dictionaryOfVariables = nil;
 + (BOOL)isNumber:(NSString *) operation
 {
     NSSet *operations;
-    operations = [NSSet setWithObjects:@"+",@"-",@"*",@"/",@"sqrt",@"cos",@"sin",@"pi", nil];
+    operations = [NSSet setWithObjects:@"+",@"-",@"*",@"/",@"sqrt",@"cos",@"sin", nil];
     
     if (![operations containsObject:operation])
     {
@@ -167,9 +158,16 @@ static NSDictionary *dictionaryOfVariables = nil;
 {
 
     [self.operandStack addObject:operation];
-    return [[self class] runProgram:self.program];
-    
+    return [[self class] runProgram:self.program];    
 }
+
+- (double)performVariable:(NSString *)variable
+      usingVariableValues:(NSDictionary *)variablesDictionary
+{
+    [self.operandStack addObject:variable];
+    return [[self class] runProgram:self.program usingVariableValues:variablesDictionary];    
+}
+
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack
 {
@@ -247,6 +245,7 @@ static NSDictionary *dictionaryOfVariables = nil;
 
 
 + (NSSet *)variablesUsedInProgram:(id)program
+    usingVariableValues:(NSDictionary *)variableValues
 {
     //iterar la pila 
     //comprobar si hay una variable en la pila
@@ -258,7 +257,7 @@ static NSDictionary *dictionaryOfVariables = nil;
     for (int i=0;i<[program count];i++){
         // Si el elemento de la pila es una llave del diccionario de variables
         // entonces es una variable y la agregamos al NSMutableSet
-        if ([dictionaryOfVariables objectForKey:[program objectAtIndex:i]]){
+        if ([variableValues objectForKey:[program objectAtIndex:i]]){
             [variablesInProgram addObject:[program objectAtIndex:i]];
        }
     }

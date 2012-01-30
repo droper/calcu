@@ -8,24 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349035088.253157"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "13"
-         endingLineNumber = "13">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
          filePath = "Calculator/CalculatorViewController.m"
-         timestampString = "348378328.197157"
+         timestampString = "349591644.158489"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "21"
-         endingLineNumber = "21"
+         startingLineNumber = "23"
+         endingLineNumber = "23"
          landmarkName = "@implementation CalculatorViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -35,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349584689.323152"
+         timestampString = "349592076.889413"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "160"
-         endingLineNumber = "160"
+         startingLineNumber = "152"
+         endingLineNumber = "152"
          landmarkName = "@implementation CalculatorBrain"
          landmarkType = "3">
       </FileBreakpoint>
@@ -49,7 +37,21 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349584689.323152"
+         timestampString = "349592076.889413"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "204"
+         endingLineNumber = "204"
+         landmarkName = "+popOperandOffProgramStack:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calculator/CalculatorBrain.m"
+         timestampString = "349592076.889413"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "205"
@@ -63,25 +65,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349584689.323152"
+         timestampString = "349591644.158489"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "206"
-         endingLineNumber = "206"
-         landmarkName = "+popOperandOffProgramStack:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349032667.13456"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "14"
-         endingLineNumber = "14"
+         startingLineNumber = "13"
+         endingLineNumber = "13"
          landmarkName = "@interface CalculatorBrain()"
          landmarkType = "2">
       </FileBreakpoint>
@@ -91,11 +79,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349507466.162766"
+         timestampString = "349591644.158489"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "19"
-         endingLineNumber = "19">
+         startingLineNumber = "18"
+         endingLineNumber = "18">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -103,26 +91,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349507466.162766"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "38"
-         endingLineNumber = "38"
-         landmarkName = "+initialize"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349584689.323152"
+         timestampString = "349592076.889413"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "255"
          endingLineNumber = "255"
-         landmarkName = "+variablesUsedInProgram:"
+         landmarkName = "+variablesUsedInProgram:usingVariableValues:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -131,13 +105,27 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/CalculatorBrain.m"
-         timestampString = "349507466.162766"
+         timestampString = "349591644.158489"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "21"
-         endingLineNumber = "21"
+         startingLineNumber = "20"
+         endingLineNumber = "20"
          landmarkName = "@implementation CalculatorBrain"
          landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calculator/CalculatorViewController.m"
+         timestampString = "349591270.600823"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "19"
+         endingLineNumber = "19"
+         landmarkName = "dictionaryOfVariables"
+         landmarkType = "19">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

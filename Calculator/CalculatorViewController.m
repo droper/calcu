@@ -16,6 +16,8 @@
 @property (nonatomic) BOOL thereIsAFloatPoint;
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
+@property (nonatomic, strong) NSDictionary *dictionaryOfVariables;
+
 @end
 
 @implementation CalculatorViewController
@@ -24,8 +26,20 @@
 @synthesize stackDisplay;
 @synthesize thereIsAFloatPoint;
 @synthesize userIsInTheMiddleOfEnteringANumber;
+@synthesize dictionaryOfVariables = _dictionaryOfVariables;
 @synthesize brain = _brain;
 
+- (NSDictionary *) dictionaryOfVariables
+{
+    if (!_dictionaryOfVariables) {
+        NSLog(@"inicializo");
+        _dictionaryOfVariables = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                 [NSNumber numberWithDouble:(double)3], @"x", 
+                                 [NSNumber numberWithDouble:(double)2], @"y", 
+                                 [NSNumber numberWithDouble:(double)1], @"z", nil];
+    }
+    return _dictionaryOfVariables;
+}
 
 - (CalculatorBrain *)brain
 {
@@ -107,6 +121,19 @@
     [self appendStackDisplay:[self.brain stackDescription]];
 
 }
+
+- (IBAction)variablePressed:(UIButton *)sender {
+   
+    NSString *variable = [sender currentTitle];
+
+    self.display.text = variable;
+    [self enterPressed];
+    
+    
+    [self.brain performVariable:variable usingVariableValues:self.dictionaryOfVariables];
+}
+
+
 
 - (void)viewDidUnload {
     [self setStackDisplay:nil];
