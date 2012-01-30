@@ -84,7 +84,7 @@ static NSDictionary *dictionaryOfVariables = nil;
 
 + (NSString *)descriptionOfProgram:(id)program	
 {
-    BOOL oper = NO;    
+    BOOL oper = NO;    // Variable booleana que indica si es el primer o segundo operando
     NSMutableArray *stack;
     NSString *res=@"";
     NSMutableArray *temp;
