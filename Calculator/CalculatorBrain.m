@@ -84,18 +84,39 @@
         stack = [program mutableCopy];
     }
     
+    /*for (int i=0;i<[stack count];i++){
+        if ([self isNumber:[stack objectAtIndex:i]]){
+            if (![[stack objectAtIndex:i] respondsToSelector:@selector(stringValue)]){
+                [stack removeObjectAtIndex:i+1];
+            }
+        }
+    }*/
+    
+    
     while ([stack count] > 0){
+        NSLog(@"Entrando a loop");
+        NSLog(@"Valor de last object: %@",[stack lastObject]);
+        
         if ([self isOperation:stack.lastObject]){
-            // Agregamos a temp el operador y lo elimionamos del stack
             [temp addObject:[stack lastObject]];
             [stack removeLastObject];
             oper = YES; // operando 2
 
         } else if ([self isNumber:stack.lastObject]){
-            if (oper == YES) {
-                res = [NSString stringWithFormat:@"%@)%@", [[stack lastObject] stringValue], res];
+            if (oper == YES) {	
+                if ([[stack lastObject] respondsToSelector:@selector(stringValue)]){
+                    res = [NSString stringWithFormat:@"%@)%@", [[stack lastObject] stringValue], res];
+                } else {
+                    res = [NSString stringWithFormat:@"%@)%@", [stack lastObject], res];
+                }
+
             } else {
-                res = [NSString stringWithFormat:@"(%@%@", [[stack lastObject] stringValue], res];
+                if ([[stack lastObject] respondsToSelector:@selector(stringValue)]){
+                    res = [NSString stringWithFormat:@"(%@%@", [[stack lastObject] stringValue], res];
+                } else {
+                    res = [NSString stringWithFormat:@"(%@%@", [stack lastObject], res];
+                }
+
             }
             [stack removeLastObject];
             // Si el elemento en temporal es operador lo agregamos al resultado
@@ -148,6 +169,10 @@
     [self.operandStack addObject:[NSNumber numberWithDouble:operand]];
 }
 
+- (void)pushVariable:(NSString *)variable
+{
+    [self.operandStack addObject:variable];
+}
 
 - (void)emptyStack
 {
@@ -155,30 +180,36 @@
 }
 
 - (double)performOperation:(NSString *)operation
+    usingVariableValues:(NSDictionary *)variablesDictionary
 {
 
     [self.operandStack addObject:operation];
-    return [[self class] runProgram:self.program];    
+    return [[self class] runProgram:self.program usingVariableValues:variablesDictionary];    
 }
 
 - (double)performVariable:(NSString *)variable
       usingVariableValues:(NSDictionary *)variablesDictionary
 {
-    [self.operandStack addObject:variable];
+ 
+    NSLog(@"Perform last object: %@",variable);
+
     return [[self class] runProgram:self.program usingVariableValues:variablesDictionary];    
 }
-
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack
 {
     double result = 0;
+    NSLog(@"Valor de variable?: %@",[stack lastObject]);
     
     id topOfStack = [stack lastObject];
     if (topOfStack) [stack removeLastObject];
     
+    
     if ([topOfStack isKindOfClass:[NSNumber class]])
     {
+        NSLog(@"Entre a nsnumber");        
         result = [topOfStack doubleValue];
+        NSLog(@"El result es: %f",result);
     }
     else if ([topOfStack isKindOfClass:[NSString class]])
     {
@@ -225,6 +256,8 @@
 + (double)runProgram:(id)program
     usingVariableValues:(NSDictionary *)variableValues
 {
+    NSLog(@"Entre a usingVariables");
+    
     NSMutableArray *stack;
     
     if ([program isKindOfClass:[NSArray class]]) {
@@ -236,7 +269,8 @@
         //Si el elemento de la pila es una llave del diccionario de variables
         //reemplazamos ese elemento por su valor en el diccionario de variables
         if ([variableValues objectForKey:[stack objectAtIndex:i]]){
-            [stack replaceObjectAtIndex:i withObject:[variableValues objectForKey:[stack objectAtIndex:i]]];
+            [stack replaceObjectAtIndex:i withObject:(NSNumber *)[variableValues objectForKey:[stack objectAtIndex:i]]];
+            NSLog(@"ALG DE CAMBIO El valor de la variable es: %@",[stack objectAtIndex:i]);
         }
     }
     
@@ -251,6 +285,8 @@
     //comprobar si hay una variable en la pila
     //y agregarla a un set
     
+    NSLog(@"Entre a variablesusedinprogram");
+    
     NSMutableSet *variablesInProgram;
     
     //iteramos la pila
@@ -263,9 +299,11 @@
     }
     
     if ([variablesInProgram count] > 0){
+        NSLog(@"Envie valores:");
         return variablesInProgram;
     }
     else {
+         NSLog(@"Envie nil");
         return nil;
     }
     

@@ -114,7 +114,8 @@
     
     NSString *operation = [sender currentTitle];
     
-    double result = [self.brain performOperation:operation];
+    double result = [self.brain performOperation:operation usingVariableValues:self.dictionaryOfVariables];
+    
     self.display.text = [NSString stringWithFormat:@"%g", result];
     
     //[self appendStackDisplay:operation];
@@ -125,12 +126,23 @@
 - (IBAction)variablePressed:(UIButton *)sender {
    
     NSString *variable = [sender currentTitle];
-
+    
     self.display.text = variable;
-    [self enterPressed];
+    
+    //[self.brain pushOperand:[[self.dictionaryOfVariables objectForKey:variable] doubleValue]];
+    [self.brain pushVariable:variable];
     
     
-    [self.brain performVariable:variable usingVariableValues:self.dictionaryOfVariables];
+    //[self.brain performVariable:variable usingVariableValues:self.dictionaryOfVariables];
+    
+
+    NSLog(@"este es una variable %@",variable);
+    
+    [self appendStackDisplay:[self.brain stackDescription]];
+    
+
+    self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.thereIsAFloatPoint = NO;    
 }
 
 
