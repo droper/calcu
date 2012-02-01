@@ -198,6 +198,7 @@
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack
 {
+    //test
     double result = 0;
     NSLog(@"Valor de variable?: %@",[stack lastObject]);
     
