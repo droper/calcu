@@ -11,11 +11,14 @@
 @interface CalculatorBrain : NSObject
 
 - (void)pushOperand:(double)operand;
+- (void)popStack;
 - (void)pushVariable:(NSString *)variable;
 - (double)performOperation:(NSString *)operation
     usingVariableValues:(NSDictionary *)variablesDictionary;
 - (double)performVariable:(NSString *)variable
       usingVariableValues:(NSDictionary *)variablesDictionary;
+- (double)executeProgram:(NSDictionary *)variablesDictionary;
+
 
 - (void)emptyStack;
 - (NSString *)stackDescription;

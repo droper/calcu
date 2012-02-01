@@ -48,6 +48,18 @@
     return _brain;
 }
 
+- (void)updateUI
+{
+    // Actuializamos el display recalculando el stack
+    double result = [self.brain executeProgram:self.dictionaryOfVariables];
+    self.display.text = [NSString stringWithFormat:@"%g", result];
+    
+    //Actualizamos la pantalla donde se muestra el stack
+    [self appendStackDisplay:[self.brain stackDescription]];
+    
+    // Se muestran las variables en variablesDisplay
+    self.variablesDisplay.text = [self.brain variablesDescription:self.dictionaryOfVariables];
+}
 
 - (void)appendStackDisplay:(NSString *)text
 {
@@ -174,8 +186,27 @@
     }
     
     // Se muestran las variables en variablesDisplay
-    self.variablesDisplay.text = [self.brain variablesDescription:self.dictionaryOfVariables];
-    
+    //self.variablesDisplay.text = [self.brain variablesDescription:self.dictionaryOfVariables];
+    [self updateUI];
+
+}
+
+
+- (IBAction)undoPressed:(id)sender {
+    // Si el usuario esta ingresando un numero borra los numeros hasta que 
+    // termina y ejecuta el programa de nuevo
+    if (self.userIsInTheMiddleOfEnteringANumber){
+        if ([self.display.text length] > 0){
+            self.display.text = [self.display.text substringToIndex:[self.display.text length]-1];
+        }else {
+            double result = [self.brain executeProgram:self.dictionaryOfVariables];
+            self.display.text = [NSString stringWithFormat:@"%g", result];
+        }
+    } else {
+        //Si el usuario no esta ingresando numeros, elimina el ultimo item del stack
+        [self.brain popStack];
+        [self updateUI];
+    }
 }
 
 

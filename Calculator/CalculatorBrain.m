@@ -31,9 +31,6 @@
     return _operandStack;
 }
 
-
-
-
 - (id)program
 {
     return [self.operandStack copy];
@@ -169,6 +166,11 @@
     [self.operandStack addObject:[NSNumber numberWithDouble:operand]];
 }
 
+- (void)popStack
+{
+    [self.operandStack removeLastObject];
+}
+
 - (void)pushVariable:(NSString *)variable
 {
     [self.operandStack addObject:variable];
@@ -184,6 +186,11 @@
 {
 
     [self.operandStack addObject:operation];
+    return [[self class] runProgram:self.program usingVariableValues:variablesDictionary];    
+}
+
+- (double)executeProgram:(NSDictionary *)variablesDictionary
+{
     return [[self class] runProgram:self.program usingVariableValues:variablesDictionary];    
 }
 
