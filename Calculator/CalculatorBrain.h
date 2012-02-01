@@ -13,12 +13,13 @@
 - (void)pushOperand:(double)operand;
 - (void)pushVariable:(NSString *)variable;
 - (double)performOperation:(NSString *)operation
-    usingVariableValues:(NSDictionary *)variablesDictionary;;
+    usingVariableValues:(NSDictionary *)variablesDictionary;
 - (double)performVariable:(NSString *)variable
       usingVariableValues:(NSDictionary *)variablesDictionary;
 
 - (void)emptyStack;
 - (NSString *)stackDescription;
+- (NSString *)variablesDescription:(NSDictionary *)variablesDictionary;
 
 @property (nonatomic, readonly) id program;
 

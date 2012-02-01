@@ -17,17 +17,18 @@
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic, strong) NSDictionary *dictionaryOfVariables;
-
 @end
 
 @implementation CalculatorViewController
 
 @synthesize display;
 @synthesize stackDisplay;
+@synthesize variablesDisplay;
 @synthesize thereIsAFloatPoint;
 @synthesize userIsInTheMiddleOfEnteringANumber;
 @synthesize dictionaryOfVariables = _dictionaryOfVariables;
 @synthesize brain = _brain;
+
 
 - (NSDictionary *) dictionaryOfVariables
 {
@@ -37,7 +38,7 @@
                                  [NSNumber numberWithDouble:(double)3], @"x", 
                                  [NSNumber numberWithDouble:(double)2], @"y", 
                                  [NSNumber numberWithDouble:(double)1], @"z", nil];
-    }
+        }
     return _dictionaryOfVariables;
 }
 
@@ -142,13 +143,46 @@
     
 
     self.userIsInTheMiddleOfEnteringANumber = NO;
-    self.thereIsAFloatPoint = NO;    
+    self.thereIsAFloatPoint = NO;
+    
+    // Se muestran las variables en variablesDisplay
+    self.variablesDisplay.text = [self.brain variablesDescription:self.dictionaryOfVariables];
 }
 
+- (IBAction)testPressed:(UIButton *)sender {
+    
+    NSString *caption = [sender currentTitle];
+    
+    if ([caption isEqualToString:@"Test 1"]){
+        self.dictionaryOfVariables = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                  [NSNumber numberWithDouble:(double)5], @"x", 
+                                  [NSNumber numberWithDouble:(double)4], @"y", 
+                                  [NSNumber numberWithDouble:(double)3], @"z", nil];
+
+    } else if ([caption isEqualToString:@"Test 2"]){
+        self.dictionaryOfVariables = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                      [NSNumber numberWithDouble:(double)-5], @"x", 
+                                      [NSNumber numberWithDouble:(double)-8], @"y", 
+                                      [NSNumber numberWithDouble:(double)0], @"z", nil];
+        
+    } else {
+        self.dictionaryOfVariables = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                      nil, @"x", 
+                                      nil, @"y", 
+                                      nil, @"z", nil];
+        
+    }
+    
+    // Se muestran las variables en variablesDisplay
+    self.variablesDisplay.text = [self.brain variablesDescription:self.dictionaryOfVariables];
+    
+}
 
 
 - (void)viewDidUnload {
     [self setStackDisplay:nil];
+    [self setVariablesDisplay:nil];
+    [self setVariablesDisplay:nil];
     [super viewDidUnload];
 }
 @end

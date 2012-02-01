@@ -288,17 +288,19 @@
     
     NSLog(@"Entre a variablesusedinprogram");
     
-    NSMutableSet *variablesInProgram;
+    NSMutableSet *variablesInProgram = [[NSMutableSet alloc] init];
     
     //iteramos la pila
     for (int i=0;i<[program count];i++){
         // Si el elemento de la pila es una llave del diccionario de variables
         // entonces es una variable y la agregamos al NSMutableSet
         if ([variableValues objectForKey:[program objectAtIndex:i]]){
+            NSLog(@"Encontro variable en el stack %@", [program objectAtIndex:i]);            
             [variablesInProgram addObject:[program objectAtIndex:i]];
        }
     }
     
+    NSLog(@"El numero de variables: %@", variablesInProgram);
     if ([variablesInProgram count] > 0){
         NSLog(@"Envie valores:");
         return variablesInProgram;
@@ -307,7 +309,20 @@
          NSLog(@"Envie nil");
         return nil;
     }
+}
+
+- (NSString *)variablesDescription:(NSDictionary *)variablesDictionary
+{
+    NSSet *variables = [[NSSet alloc] init];
+    NSString *variablesDescription = @"";
     
+    variables = [[self class] variablesUsedInProgram:[self operandStack] usingVariableValues:variablesDictionary];
+    
+    for (id variable in variables){
+        variablesDescription = [NSString stringWithFormat:@"%@ = %@ %@", variable, [variablesDictionary objectForKey:variable], variablesDescription];
+    }
+    
+    return variablesDescription;
 }
 
 @end
