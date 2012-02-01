@@ -186,7 +186,6 @@
     }
     
     // Se muestran las variables en variablesDisplay
-    //self.variablesDisplay.text = [self.brain variablesDescription:self.dictionaryOfVariables];
     [self updateUI];
 
 }
