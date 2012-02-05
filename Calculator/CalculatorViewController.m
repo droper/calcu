@@ -31,7 +31,7 @@
 
 
 - (NSDictionary *) dictionaryOfVariables
-{
+{ //test234
     if (!_dictionaryOfVariables) {
         NSLog(@"inicializo");
         _dictionaryOfVariables = [[NSDictionary alloc] initWithObjectsAndKeys:
