@@ -7,7 +7,9 @@
 //
 
 #import "CalculatorViewController.h"
+#import "GraphiViewController.h"
 #import "CalculatorBrain.h"
+
 
 @interface CalculatorViewController()
 
@@ -17,6 +19,8 @@
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic, strong) NSDictionary *dictionaryOfVariables;
+@property (nonatomic) int prueba;
+
 @end
 
 @implementation CalculatorViewController
@@ -28,6 +32,7 @@
 @synthesize userIsInTheMiddleOfEnteringANumber;
 @synthesize dictionaryOfVariables = _dictionaryOfVariables;
 @synthesize brain = _brain;
+@synthesize prueba;
 
 
 - (NSDictionary *) dictionaryOfVariables
@@ -207,6 +212,25 @@
         [self updateUI];
     }
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Graphi"]) {
+        [segue.destinationViewController setLabel:self.prueba];
+    }
+}
+
+- (void)setAndShowLabel:(int)valor
+{
+    self.prueba = valor;
+    [self performSegueWithIdentifier:@"Graphi" sender:self];
+}
+
+- (IBAction)graphPressed {
+    [self setAndShowLabel:20];
+}
+
 
 
 - (void)viewDidUnload {

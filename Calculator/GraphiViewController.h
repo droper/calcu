@@ -10,5 +10,8 @@
 
 @interface GraphiViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *displayPrueba;
+
+@property (nonatomic) int label; 
 
 @end

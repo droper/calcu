@@ -7,48 +7,41 @@
 //
 
 #import "GraphiViewController.h"
+#import "GraphiView.h"
+#import "AxesDrawer.h"
+
+
+@interface GraphiViewController()
+@property (nonatomic, weak) IBOutlet GraphiView *graphiView;
+@end
+
+
 
 @implementation GraphiViewController
+@synthesize displayPrueba = _displayPrueba;
+@synthesize graphiView = _graphiView;
+@synthesize label=_label;
 
-
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)setLabel:(int)label
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+    _label = label;
+    NSLog(@"setlabel aqui %i",label);
+    //self.displayPrueba.text = @"LO QUE SEA";
+    //[self.graphiView setNeedsDisplay];
     
-    // Release any cached data, images, etc that aren't in use.
+    self.displayPrueba.text =  [NSString stringWithFormat:@"LO QUE SEA %i",label];
 }
 
-#pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
+- (void)viewDidUnload {
+    [self setDisplayPrueba:nil];
+    [super viewDidUnload];
+}
 @end
