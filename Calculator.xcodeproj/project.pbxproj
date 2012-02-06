@@ -16,6 +16,8 @@
 		2F3BC36C14BCA1A200C570C1 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC36B14BCA1A200C570C1 /* CalculatorViewController.m */; };
 		2F3BC37214BCA30100C570C1 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BC36714BCA1A200C570C1 /* MainStoryboard.storyboard */; };
 		2F3BC37514BCAF1900C570C1 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC37414BCAF1900C570C1 /* CalculatorBrain.m */; };
+		2FBB230B14DF589C0026842A /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB230A14DF589C0026842A /* AxesDrawer.m */; };
+		2FD3AC4D14DF6693003B663F /* GraphiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3AC4B14DF6693003B663F /* GraphiViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		2F3BC36B14BCA1A200C570C1 /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 		2F3BC37314BCAF1900C570C1 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		2F3BC37414BCAF1900C570C1 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
+		2FBB230914DF589C0026842A /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		2FBB230A14DF589C0026842A /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
+		2FD3AC4A14DF6693003B663F /* GraphiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphiViewController.h; sourceTree = "<group>"; };
+		2FD3AC4B14DF6693003B663F /* GraphiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphiViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +89,14 @@
 				2F3BC36414BCA1A200C570C1 /* CalculatorAppDelegate.h */,
 				2F3BC36514BCA1A200C570C1 /* CalculatorAppDelegate.m */,
 				2F3BC36714BCA1A200C570C1 /* MainStoryboard.storyboard */,
+				2FD3AC4A14DF6693003B663F /* GraphiViewController.h */,
+				2FD3AC4B14DF6693003B663F /* GraphiViewController.m */,
 				2F3BC36A14BCA1A200C570C1 /* CalculatorViewController.h */,
 				2F3BC36B14BCA1A200C570C1 /* CalculatorViewController.m */,
 				2F3BC37314BCAF1900C570C1 /* CalculatorBrain.h */,
 				2F3BC37414BCAF1900C570C1 /* CalculatorBrain.m */,
+				2FBB230914DF589C0026842A /* AxesDrawer.h */,
+				2FBB230A14DF589C0026842A /* AxesDrawer.m */,
 				2F3BC35C14BCA1A200C570C1 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -169,6 +179,8 @@
 				2F3BC36614BCA1A200C570C1 /* CalculatorAppDelegate.m in Sources */,
 				2F3BC36C14BCA1A200C570C1 /* CalculatorViewController.m in Sources */,
 				2F3BC37514BCAF1900C570C1 /* CalculatorBrain.m in Sources */,
+				2FBB230B14DF589C0026842A /* AxesDrawer.m in Sources */,
+				2FD3AC4D14DF6693003B663F /* GraphiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +257,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -256,7 +270,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Calculator/Calculator-Prefix.pch";
 				INFOPLIST_FILE = "Calculator/Calculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -280,6 +296,7 @@
 				2F3BC37114BCA1A200C570C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
