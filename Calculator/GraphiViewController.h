@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphiView.h"
 
 @interface GraphiViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *displayPrueba;
 
 @property (nonatomic) int label; 
 

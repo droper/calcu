@@ -10,28 +10,41 @@
 #import "GraphiView.h"
 #import "AxesDrawer.h"
 
-
-@interface GraphiViewController()
+@interface GraphiViewController() <GraphiViewDataSource>
 @property (nonatomic, weak) IBOutlet GraphiView *graphiView;
+
 @end
 
 
-
 @implementation GraphiViewController
-@synthesize displayPrueba = _displayPrueba;
 @synthesize graphiView = _graphiView;
 @synthesize label=_label;
 
 - (void)setLabel:(int)label
 {
     _label = label;
-    NSLog(@"setlabel aqui %i",label);
+    NSLog(@"LO QUE SEA %i",label);
     //self.displayPrueba.text = @"LO QUE SEA";
-    //[self.graphiView setNeedsDisplay];
-    
-    self.displayPrueba.text =  [NSString stringWithFormat:@"LO QUE SEA %i",label];
+    [self.graphiView setNeedsDisplay];
+        
 }
 
+- (void)setGraphiView:(GraphiView *)graphiView
+{
+    _graphiView = graphiView;
+    self.graphiView.dataSource = self;
+}
+
+
+- (void)dibujar:(GraphiView *)sender contexto:(CGContextRef)context
+{
+    CGContextBeginPath(context);
+    //CGContextMoveToPoint(context, mouthStart.x, mouthStart.y);
+    //CGContextAddCurveToPoint(context, mouthCP1.x, mouthCP1.y, mouthCP2.x, mouthCP2.y, mouthEnd.x, mouthEnd.y); // bezier curve
+    CGContextMoveToPoint(context, 10, 50);
+    CGContextAddCurveToPoint(context, 10, 100, 10, 100, 10, 200); // 
+    CGContextStrokePath(context);
+}
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -40,8 +53,12 @@
     return YES;
 }
 
-- (void)viewDidUnload {
-    [self setDisplayPrueba:nil];
-    [super viewDidUnload];
-}
+//- (void)viewDidUnload {
+   // [self setDisplayPrueba:nil];
+  //  [super viewDidUnload];
+//}
+
+
+
+
 @end

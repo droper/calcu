@@ -9,13 +9,12 @@
 #import "GraphiView.h"
 
 
-
 @implementation GraphiView
 
 @synthesize dataSource = _dataSource;
 @synthesize scale = _scale;
 
-#define DEFAULT_SCALE 0.9
+#define DEFAULT_SCALE 0.5
 
 - (CGFloat)scale
 {
@@ -58,7 +57,7 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGPoint midPoint; // center of our bounds in our coordinate system
+    /*CGPoint midPoint; // center of our bounds in our coordinate system
     midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
     midPoint.y = self.bounds.origin.y + self.bounds.size.height/2;
     
@@ -93,7 +92,7 @@
     CGPoint mouthCP1 = mouthStart;
     mouthCP1.x += MOUTH_H * size * 2/3;
     CGPoint mouthCP2 = mouthEnd;
-    mouthCP2.x -= MOUTH_H * size * 2/3;
+    mouthCP2.x -= MOUTH_H * size * 2/3;*/
     
    /* float smile = [self.dataSource smileForFaceView:self]; // delegate our View's data
     if (smile < -1) smile = -1;
@@ -102,12 +101,16 @@
     CGFloat smileOffset = MOUTH_SMILE * size * smile;
     mouthCP1.y += smileOffset;
     mouthCP2.y += smileOffset;
+    */
     
-    
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, mouthStart.x, mouthStart.y);
-    CGContextAddCurveToPoint(context, mouthCP1.x, mouthCP1.y, mouthCP2.x, mouthCP2.y, mouthEnd.x, mouthEnd.y); // bezier curve
-    CGContextStrokePath(context);*/
+    //CGContextBeginPath(context);
+    //CGContextMoveToPoint(context, mouthStart.x, mouthStart.y);
+    //CGContextAddCurveToPoint(context, mouthCP1.x, mouthCP1.y, mouthCP2.x, mouthCP2.y, mouthEnd.x, mouthEnd.y); // bezier curve
+    //CGContextMoveToPoint(context, 10, 50);
+    //CGContextAddCurveToPoint(context, 10, 100, 10, 100, 10, 200); // 
+   // CGContextStrokePath(context);
+    //NSLog(@"EL valor de self.datasource %@",[self.dataSource ]  );
+    [self.dataSource dibujar:self contexto:context];
 }
 
 

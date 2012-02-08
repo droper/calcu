@@ -32,7 +32,7 @@
 @synthesize userIsInTheMiddleOfEnteringANumber;
 @synthesize dictionaryOfVariables = _dictionaryOfVariables;
 @synthesize brain = _brain;
-@synthesize prueba;
+@synthesize prueba = _prueba;
 
 
 - (NSDictionary *) dictionaryOfVariables
@@ -217,19 +217,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Graphi"]) {
-        [segue.destinationViewController setLabel:self.prueba];
+        [segue.destinationViewController setLabel:20];
     }
 }
 
-- (void)setAndShowLabel:(int)valor
-{
-    self.prueba = valor;
-    [self performSegueWithIdentifier:@"Graphi" sender:self];
-}
-
-- (IBAction)graphPressed {
-    [self setAndShowLabel:20];
-}
 
 
 

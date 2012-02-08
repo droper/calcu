@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class GraphiView;
+
+@protocol GraphiViewDataSource
+
+- (void)dibujar:(GraphiView *)sender contexto:(CGContextRef)context;
+
+@end
+
 @interface GraphiView : UIView
 
 @property (nonatomic) CGFloat scale;
 
-@property (nonatomic, weak) IBOutlet id dataSource;
+@property (nonatomic, weak) IBOutlet id  <GraphiViewDataSource> dataSource;
 
 
 @end

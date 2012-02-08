@@ -391,8 +391,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="graphPressed" destination="2" eventType="touchUpInside" id="0iE-V6-R5a"/>
-                                    <segue destination="4uZ-L3-rgo" kind="push" identifier="Graphi" id="FBA-dS-STA"/>
+                                    <segue destination="iw2-OI-fg0" kind="push" identifier="Graphi" id="dj0-KV-TiK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -408,32 +407,29 @@
             </objects>
             <point key="canvasLocation" x="-267" y="-401"/>
         </scene>
-        <scene sceneID="Gs6-hb-N0R">
+        <scene sceneID="Qln-rn-xSE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QnY-qN-wOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="4uZ-L3-rgo" customClass="GraphiViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="x8T-MH-7Xg" customClass="GraphiView">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h9Z-8C-bxm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="iw2-OI-fg0" customClass="GraphiViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WMH-Y7-S0p">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="AJc-k4-nRy">
-                                <rect key="frame" x="35" y="286" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" id="EKt-3H-LUC" customClass="GraphiView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8IZ-4r-DVW"/>
+                    <navigationItem key="navigationItem" id="CJn-iX-LL9"/>
                     <connections>
-                        <outlet property="displayPrueba" destination="AJc-k4-nRy" id="rhj-wE-tUx"/>
-                        <outlet property="graphiView" destination="x8T-MH-7Xg" id="7wV-In-fyB"/>
+                        <outlet property="graphiView" destination="EKt-3H-LUC" id="dtw-ZL-A0j"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="162" y="-394"/>
+            <point key="canvasLocation" x="204" y="-401"/>
         </scene>
         <scene sceneID="CA3-d1-IrF">
             <objects>
