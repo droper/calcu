@@ -36,14 +36,11 @@
 }
 
 
-- (void)dibujar:(GraphiView *)sender contexto:(CGContextRef)context
+- (void)dibujar:(GraphiView *)sender 
 {
-    CGContextBeginPath(context);
-    //CGContextMoveToPoint(context, mouthStart.x, mouthStart.y);
-    //CGContextAddCurveToPoint(context, mouthCP1.x, mouthCP1.y, mouthCP2.x, mouthCP2.y, mouthEnd.x, mouthEnd.y); // bezier curve
-    CGContextMoveToPoint(context, 10, 50);
-    CGContextAddCurveToPoint(context, 10, 100, 10, 100, 10, 200); // 
-    CGContextStrokePath(context);
+
+    
+    //AxesDrawer drawAxesInRect:<#(CGRect)#> originAtPoint:<#(CGPoint)#> scale:<#(CGFloat)#>
 }
 
 

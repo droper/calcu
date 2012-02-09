@@ -110,7 +110,7 @@
     //CGContextAddCurveToPoint(context, 10, 100, 10, 100, 10, 200); // 
    // CGContextStrokePath(context);
     //NSLog(@"EL valor de self.datasource %@",[self.dataSource ]  );
-    [self.dataSource dibujar:self contexto:context];
+    [self.dataSource dibujar:self ];
 }
 
 

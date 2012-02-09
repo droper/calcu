@@ -12,7 +12,7 @@
 
 @protocol GraphiViewDataSource
 
-- (void)dibujar:(GraphiView *)sender contexto:(CGContextRef)context;
+- (void)dibujar:(GraphiView *)sender;
 
 @end
 

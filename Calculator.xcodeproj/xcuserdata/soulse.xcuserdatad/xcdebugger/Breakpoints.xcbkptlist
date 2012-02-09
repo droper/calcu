@@ -175,11 +175,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "350415206.136169"
+         timestampString = "350417639.41265"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65">
+         startingLineNumber = "63"
+         endingLineNumber = "63">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -255,12 +255,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "350355523.439652"
+         timestampString = "350417639.41265"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "38"
-         endingLineNumber = "38"
-         landmarkName = "-dibujar:contexto:"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
+         landmarkName = "-dibujar:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -269,11 +269,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "350415206.136169"
+         timestampString = "350417639.41265"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
+         startingLineNumber = "48"
+         endingLineNumber = "48"
          landmarkName = "-shouldAutorotateToInterfaceOrientation:"
          landmarkType = "5">
       </FileBreakpoint>
