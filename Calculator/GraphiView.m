@@ -16,6 +16,8 @@
 
 #define DEFAULT_SCALE 0.5
 
+// Crear funcion que grafique en una curva los puntos de un NSSet
+
 - (CGFloat)scale
 {
     if (!_scale) {
@@ -55,7 +57,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    //CGContextRef context = UIGraphicsGetCurrentContext();
     
     /*CGPoint midPoint; // center of our bounds in our coordinate system
     midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
@@ -110,7 +112,9 @@
     //CGContextAddCurveToPoint(context, 10, 100, 10, 100, 10, 200); // 
    // CGContextStrokePath(context);
     //NSLog(@"EL valor de self.datasource %@",[self.dataSource ]  );
-    [self.dataSource dibujar:self ];
+    [self.dataSource drawAxis:self];
+    
+    // Llamar funcion drawEcuation que dibuje los puntos mde un NSset.
 }
 
 

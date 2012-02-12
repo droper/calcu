@@ -218,10 +218,13 @@
 {
     if ([segue.identifier isEqualToString:@"Graphi"]) {
         [segue.destinationViewController setLabel:20];
+        //Pasar el NSSet con los puntos
     }
 }
 
+//En graphPressed ejecutar la funcion obtainPoints
 
+//Crear la funcion ObtainPoints para obtener los puntos desde la funcion ecuationPoints de CalculatorBrain la cual devuelve los puntos
 
 
 - (void)viewDidUnload {

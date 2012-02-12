@@ -12,7 +12,8 @@
 
 @protocol GraphiViewDataSource
 
-- (void)dibujar:(GraphiView *)sender;
+- (void)drawAxis:(GraphiView *)sender;
+- (void)ecuationPoins:(NSSet *)points;
 
 @end
 

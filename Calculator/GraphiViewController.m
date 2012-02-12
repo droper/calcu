@@ -29,18 +29,29 @@
         
 }
 
+// Crear una funcion setPoints la cual reciba los puntos en un NSSset desde CalculatorViewcontroller
+
+// Crear una funcion ecuationPoints la cual devuelva un NSSset con los puntos de la ecuación a dibujar
+
 - (void)setGraphiView:(GraphiView *)graphiView
 {
     _graphiView = graphiView;
     self.graphiView.dataSource = self;
 }
 
-
-- (void)dibujar:(GraphiView *)sender 
+// Funcion que dibuja los ejes cartesianos
+- (void)drawAxis:(GraphiView *)sender 
 {
-
+    CGRect rect = CGRectMake(0,0, 640, 960);
+    CGPoint punto = CGPointMake(160, 200);
+    CGFloat escala = 1;
     
-    //AxesDrawer drawAxesInRect:<#(CGRect)#> originAtPoint:<#(CGPoint)#> scale:<#(CGFloat)#>
+    [AxesDrawer drawAxesInRect:rect originAtPoint:punto scale:escala];
+}
+
+- (void)ecuationPoins:(NSSet *)points
+{
+    
 }
 
 
