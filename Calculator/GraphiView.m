@@ -8,15 +8,54 @@
 
 #import "GraphiView.h"
 
+@interface GraphiView()
+
+@property (nonatomic, strong) NSMutableArray *points;
+    
+@end
 
 @implementation GraphiView
 
 @synthesize dataSource = _dataSource;
 @synthesize scale = _scale;
+@synthesize points = _points;
+
+- (NSMutableArray *)points
+{
+    if (!_points) {
+        _points = [[NSMutableArray alloc] initWithObjects:[NSValue valueWithCGPoint: CGPointMake(0, 0)], [NSValue valueWithCGPoint:CGPointMake(10, 10)], [NSValue valueWithCGPoint:CGPointMake(50, 50)], [NSValue valueWithCGPoint:CGPointMake(80, 120)], nil];
+    }
+    return _points;
+}
 
 #define DEFAULT_SCALE 0.5
 
+
 // Crear funcion que grafique en una curva los puntos de un NSSet
+
+- (void)drawEcuation:(CGContextRef)context
+              ecuationPoints:(NSMutableArray *)points
+{
+    //CGContextRef context = UIGraphicsGetCurrentContext();
+    
+	//UIGraphicsPushContext(context);
+    
+    //CGContextBeginPath(context);
+    
+    for (int i = 0; i < [points count]-1; i++) 
+    {   
+        CGContextMoveToPoint(context, 
+                             [(NSValue *)[points objectAtIndex:i] CGPointValue].x, 
+                             [(NSValue *)[points objectAtIndex:i] CGPointValue].y);
+        CGContextAddLineToPoint(context, 
+                             [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x, 
+                             [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y);
+    }
+    
+	CGContextStrokePath(context);
+    
+    UIGraphicsPopContext();
+}
 
 - (CGFloat)scale
 {
@@ -57,7 +96,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    //CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
     /*CGPoint midPoint; // center of our bounds in our coordinate system
     midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
@@ -114,7 +153,8 @@
     //NSLog(@"EL valor de self.datasource %@",[self.dataSource ]  );
     [self.dataSource drawAxis:self];
     
-    // Llamar funcion drawEcuation que dibuje los puntos mde un NSset.
+    // Llamar funcion drawEcuation que dibuje los puntos mde un aray.
+    [self drawEcuation:context ecuationPoints:self.points];
 }
 
 
