@@ -19,6 +19,7 @@
 @implementation GraphiViewController
 @synthesize graphiView = _graphiView;
 @synthesize label=_label;
+@synthesize points=_points;
 
 - (void)setLabel:(int)label
 {
@@ -30,6 +31,12 @@
 }
 
 // Crear una funcion setPoints la cual reciba los puntos en un NSSset desde CalculatorViewcontroller
+- (void)setPoints:(NSMutableArray *)points
+{
+    _points = points;
+    
+    [self.graphiView setNeedsDisplay];
+}
 
 // Crear una funcion ecuationPoints la cual devuelva un NSSset con los puntos de la ecuación a dibujar
 
@@ -49,9 +56,15 @@
     [AxesDrawer drawAxesInRect:rect originAtPoint:punto scale:escala];
 }
 
-- (void)ecuationPoins:(NSSet *)points
+// funcion que dibuja un texto en la pantalla
+- (void)drawString:(GraphiView *)sender texto:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor
 {
-    
+    [AxesDrawer drawString:text atPoint:location withAnchor:anchor];
+}
+
+- (NSMutableArray *)ecuationPoints
+{
+    return self.points;
 }
 
 

@@ -19,11 +19,13 @@
 
 @implementation CalculatorBrain
 
-//CREAR FUNCION ecuationPoints LA CUAL DEVUELVA UN NSSSET CON LOS PUNTOS DE LA ECUACIÓN EN EL STACK. ESTA FUNCION VA A CREAR LOS PUNTOS ITERANDO UN N NUMEROS DE VECES SOBRE EL OPERAND STACK Y ASIGNANDO DIFERENTES VALORES A LA VARIABLE X Y POR ENDE OBTENIENDO DIFERENTES VALORES PARA Y EN LA FORMA Y = F(X)
 
-
-//@synthesize dictionaryOfVariables= _dictionaryOfVariables;
 @synthesize operandStack = _operandStack;
+
+- (NSMutableArray *)ecuationPoints
+{
+    return [[NSMutableArray alloc] initWithObjects:[NSValue valueWithCGPoint: CGPointMake(20, 50)], [NSValue valueWithCGPoint:CGPointMake(30, 40)], [NSValue valueWithCGPoint:CGPointMake(70, 80)], [NSValue valueWithCGPoint:CGPointMake(120, 200)], nil];
+}
 
 
 - (NSMutableArray *)operandStack

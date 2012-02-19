@@ -10,7 +10,7 @@
 
 @interface GraphiView()
 
-@property (nonatomic, strong) NSMutableArray *points;
+//@property (nonatomic, strong) NSMutableArray *points;
     
 @end
 
@@ -18,38 +18,27 @@
 
 @synthesize dataSource = _dataSource;
 @synthesize scale = _scale;
-@synthesize points = _points;
 
-- (NSMutableArray *)points
-{
-    if (!_points) {
-        _points = [[NSMutableArray alloc] initWithObjects:[NSValue valueWithCGPoint: CGPointMake(0, 0)], [NSValue valueWithCGPoint:CGPointMake(10, 10)], [NSValue valueWithCGPoint:CGPointMake(50, 50)], [NSValue valueWithCGPoint:CGPointMake(80, 120)], nil];
-    }
-    return _points;
-}
 
 #define DEFAULT_SCALE 0.5
 
 
-// Crear funcion que grafique en una curva los puntos de un NSSet
-
 - (void)drawEcuation:(CGContextRef)context
               ecuationPoints:(NSMutableArray *)points
 {
-    //CGContextRef context = UIGraphicsGetCurrentContext();
-    
-	//UIGraphicsPushContext(context);
-    
-    //CGContextBeginPath(context);
-    
-    for (int i = 0; i < [points count]-1; i++) 
+    for (int i = 0; i < [points count]-1; i=i+1) 
     {   
         CGContextMoveToPoint(context, 
                              [(NSValue *)[points objectAtIndex:i] CGPointValue].x, 
                              [(NSValue *)[points objectAtIndex:i] CGPointValue].y);
-        CGContextAddLineToPoint(context, 
-                             [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x, 
-                             [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y);
+        /*CGContextAddCurveToPoint(context, 
+            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x, 
+            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y, 
+            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x,
+            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y, [(NSValue *)[points objectAtIndex:i+2] CGPointValue].x, [(NSValue *)[points objectAtIndex:i+2] CGPointValue].y);*/
+        CGContextAddLineToPoint(context,
+                [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x, 
+                [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y);
     }
     
 	CGContextStrokePath(context);
@@ -150,11 +139,10 @@
     //CGContextMoveToPoint(context, 10, 50);
     //CGContextAddCurveToPoint(context, 10, 100, 10, 100, 10, 200); // 
    // CGContextStrokePath(context);
-    //NSLog(@"EL valor de self.datasource %@",[self.dataSource ]  );
+
     [self.dataSource drawAxis:self];
-    
-    // Llamar funcion drawEcuation que dibuje los puntos mde un aray.
-    [self drawEcuation:context ecuationPoints:self.points];
+    [self drawEcuation:context ecuationPoints:[self.dataSource ecuationPoints]];
+    [self.dataSource drawString:self texto:@"Texto" atPoint:CGPointMake(160, 200) withAnchor:5];
 }
 
 

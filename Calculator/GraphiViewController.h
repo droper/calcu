@@ -12,6 +12,7 @@
 @interface GraphiViewController : UIViewController
 
 
-@property (nonatomic) int label; 
+@property (nonatomic) int label;
+@property (nonatomic, strong) NSMutableArray *points;
 
 @end

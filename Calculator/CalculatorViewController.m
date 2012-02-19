@@ -53,6 +53,24 @@
     return _brain;
 }
 
+
+// Funcion que devuelve los pun tos necessarios para dibujar la ecuación en GraphiView
+- (NSMutableArray *)ecuationPoints
+{
+    NSMutableArray *points = [[NSMutableArray alloc] init];
+    
+    for (float x=-160; x<400;x=x+1)
+    {
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:                                      [NSNumber numberWithDouble:(double)x], @"x", nil];
+                
+        double y = [self.brain executeProgram:dict];
+        
+        [points addObject:[NSValue valueWithCGPoint: CGPointMake(x+160, y+200)]];
+    }
+    
+    return points;
+}
+
 - (void)updateUI
 {
     // Actuializamos el display recalculando el stack
@@ -217,14 +235,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Graphi"]) {
-        [segue.destinationViewController setLabel:20];
-        //Pasar el NSSet con los puntos
-    }
+        [segue.destinationViewController setPoints:[self ecuationPoints]];
+        }
 }
 
-//En graphPressed ejecutar la funcion obtainPoints
-
-//Crear la funcion ObtainPoints para obtener los puntos desde la funcion ecuationPoints de CalculatorBrain la cual devuelve los puntos
 
 
 - (void)viewDidUnload {

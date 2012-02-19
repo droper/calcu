@@ -15,4 +15,6 @@
          originAtPoint:(CGPoint)axisOrigin
                  scale:(CGFloat)pointsPerUnit;
 
++ (void)drawString:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor;
+
 @end

@@ -13,7 +13,8 @@
 @protocol GraphiViewDataSource
 
 - (void)drawAxis:(GraphiView *)sender;
-- (void)ecuationPoins:(NSSet *)points;
+- (NSMutableArray *)ecuationPoints;
+- (void)drawString:(GraphiView *)sender texto:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor;
 
 @end
 
