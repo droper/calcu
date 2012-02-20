@@ -236,6 +236,7 @@
 {
     if ([segue.identifier isEqualToString:@"Graphi"]) {
         [segue.destinationViewController setPoints:[self ecuationPoints]];
+        [segue.destinationViewController setEcuationText:[self.brain programDescription]];
         }
 }
 

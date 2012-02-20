@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *ecuationTextLabel;
 
-@property (nonatomic) int label;
+@property (strong, nonatomic) NSString *ecuationText;
 @property (nonatomic, strong) NSMutableArray *points;
 
 @end

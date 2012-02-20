@@ -15,17 +15,16 @@
 
 @end
 
-
 @implementation GraphiViewController
 @synthesize graphiView = _graphiView;
 @synthesize ecuationTextLabel = _ecuationTextLabel;
-@synthesize label=_label;
+@synthesize ecuationText = _ecuationText;
 @synthesize points=_points;
 
-- (void)setLabel:(int)label
+- (void)setEcuationText:(NSString *)ecuationText
 {
-    _label = label;
-    NSLog(@"LO QUE SEA %i",label);
+    _ecuationText = ecuationText;
+    NSLog(@"LO QUE SEA %@",ecuationText);
     //self.displayPrueba.text = @"LO QUE SEA";
     [self.graphiView setNeedsDisplay];
         
@@ -68,6 +67,13 @@
     return self.points;
 }
 
+//- (NSString *)ecuationText
+/*- (void)ecuationText
+{
+    //return self.ecuationText;
+    NSLog(@"ETIQUETA %@",self.ecuationTextLabel.text);
+}*/
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -75,12 +81,16 @@
     return YES;
 }
 
+-(void)viewDidLoad
+{
+    self.ecuationTextLabel.text = self.ecuationText;
+    [super viewDidLoad];
+}
+
 //- (void)viewDidUnload {
    // [self setDisplayPrueba:nil];
   //  [super viewDidUnload];
 //}
-
-
 
 
 - (void)viewDidUnload {

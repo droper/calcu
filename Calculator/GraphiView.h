@@ -14,7 +14,8 @@
 
 - (void)drawAxis:(GraphiView *)sender;
 - (NSMutableArray *)ecuationPoints;
-- (void)drawString:(GraphiView *)sender texto:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor;
+//- (void)drawString:(GraphiView *)sender texto:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor;
+//- (void)ecuationText;
 
 @end
 

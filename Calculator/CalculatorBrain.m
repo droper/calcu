@@ -337,4 +337,10 @@
     return variablesDescription;
 }
 
+
+- (NSString *)programDescription
+{
+    return [[self class] descriptionOfProgram:[self operandStack]];
+}
+
 @end

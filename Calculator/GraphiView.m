@@ -83,6 +83,8 @@
     return self;
 }
 
+
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -143,8 +145,6 @@
     [self.dataSource drawAxis:self];
     [self drawEcuation:context ecuationPoints:[self.dataSource ecuationPoints]];
     //[self.dataSource drawString:self texto:@"Texto" atPoint:CGPointMake(160, 200) withAnchor:5];
-    
-    
 }
 
 

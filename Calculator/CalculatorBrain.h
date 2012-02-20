@@ -19,6 +19,7 @@
       usingVariableValues:(NSDictionary *)variablesDictionary;
 - (double)executeProgram:(NSDictionary *)variablesDictionary;
 - (NSMutableArray *)ecuationPoints;
+- (NSString *)programDescription;
 
 
 - (void)emptyStack;
