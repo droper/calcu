@@ -10,7 +10,7 @@
 
 @interface GraphiView()
 
-//@property (nonatomic, strong) NSMutableArray *points;
+
     
 @end
 
@@ -142,7 +142,9 @@
 
     [self.dataSource drawAxis:self];
     [self drawEcuation:context ecuationPoints:[self.dataSource ecuationPoints]];
-    [self.dataSource drawString:self texto:@"Texto" atPoint:CGPointMake(160, 200) withAnchor:5];
+    //[self.dataSource drawString:self texto:@"Texto" atPoint:CGPointMake(160, 200) withAnchor:5];
+    
+    
 }
 
 

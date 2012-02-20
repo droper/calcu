@@ -11,6 +11,7 @@
 
 @interface GraphiViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *ecuationTextLabel;
 
 @property (nonatomic) int label;
 @property (nonatomic, strong) NSMutableArray *points;

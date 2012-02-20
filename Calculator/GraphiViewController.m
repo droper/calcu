@@ -18,6 +18,7 @@
 
 @implementation GraphiViewController
 @synthesize graphiView = _graphiView;
+@synthesize ecuationTextLabel = _ecuationTextLabel;
 @synthesize label=_label;
 @synthesize points=_points;
 
@@ -82,4 +83,8 @@
 
 
 
+- (void)viewDidUnload {
+    [self setEcuationTextLabel:nil];
+    [super viewDidUnload];
+}
 @end
