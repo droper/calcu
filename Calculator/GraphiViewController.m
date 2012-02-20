@@ -10,8 +10,16 @@
 #import "GraphiView.h"
 #import "AxesDrawer.h"
 
+#define originX 160
+#define originY 200
+
 @interface GraphiViewController() <GraphiViewDataSource>
 @property (nonatomic, weak) IBOutlet GraphiView *graphiView;
+@property (nonatomic) float translateX;
+@property (nonatomic) float translateY;
+@property (nonatomic) CGPoint originPoint;
+
+
 
 @end
 
@@ -20,6 +28,18 @@
 @synthesize ecuationTextLabel = _ecuationTextLabel;
 @synthesize ecuationText = _ecuationText;
 @synthesize points=_points;
+@synthesize translateX = _translateX;
+@synthesize translateY = _translateY;
+@synthesize originPoint = _originPoint;
+
+- (CGPoint)originPoint
+{
+    if (!_originPoint.x || !_originPoint.y) {
+        return CGPointMake(originX, originY); // don't allow zero scale
+    } else {
+        return _originPoint;
+    }
+}
 
 - (void)setEcuationText:(NSString *)ecuationText
 {
@@ -38,23 +58,96 @@
     [self.graphiView setNeedsDisplay];
 }
 
-// Crear una funcion ecuationPoints la cual devuelva un NSSset con los puntos de la ecuación a dibujar
+- (void)setTranslateX:(float)translateX
+{
+    _translateX = translateX;
+    
+    [self.graphiView setNeedsDisplay];
+}
+
+- (void)setTranslateY:(float)translateY
+{
+    _translateY = translateY;
+    
+    [self.graphiView setNeedsDisplay];
+}
+
+- (void)setOriginPoint:(CGPoint)originPoint
+{
+    _originPoint = originPoint;
+    
+    [self.graphiView setNeedsDisplay];
+}
+
 
 - (void)setGraphiView:(GraphiView *)graphiView
 {
     _graphiView = graphiView;
+    [self.graphiView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphiView action:@selector(pinch:)]];
+    
+    // recognize a pan gesture and modify our Model
+    [self.graphiView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePoint:)]];
+    
+    // recognize triple tap gesture
+    UITapGestureRecognizer *tripleTap = 
+    [[UITapGestureRecognizer alloc]
+     initWithTarget:self action:@selector(handleTripleTap:)];
+    [tripleTap setNumberOfTapsRequired:3];
+    [self.graphiView addGestureRecognizer:tripleTap];
+    
     self.graphiView.dataSource = self;
 }
 
+- (void)handlePoint:(UIPanGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        CGPoint translation = [gesture translationInView:self.graphiView];
+        self.translateX -= translation.x;
+        self.translateY -= translation.y;
+        //self.happiness -= translation.y / 2; // will update FaceView via setHappiness:
+        [gesture setTranslation:CGPointZero inView:self.graphiView];
+    }
+}
+
+- (void)handleTripleTap:(UITapGestureRecognizer *)gesture
+{
+    CGPoint point = [gesture locationInView:self.graphiView];
+    
+    self.originPoint = CGPointMake(point.x, point.y);
+}
+
+
+- (float)returnTranslateX:(GraphiView *)sender
+{
+    return self.translateX;
+}
+
+- (float)returnTranslateY:(GraphiView *)sender
+{
+    return self.translateY;
+}
+
+- (CGPoint)returnOriginPoint:(GraphiView *)sender
+{
+    return self.originPoint;
+}
+
 // Funcion que dibuja los ejes cartesianos
-- (void)drawAxis:(GraphiView *)sender 
+- (void)drawAxis:(GraphiView *)sender
+           scale:(CGFloat)scale
+            translateX:(CGFloat)translateX
+            translateY:(CGFloat)translateY
+            originPoint:(CGPoint)point
+
 {
     CGRect rect = CGRectMake(0,0, 640, 960);
-    CGPoint punto = CGPointMake(160, 200);
-    CGFloat escala = 1;
+    CGPoint punto = CGPointMake((point.x+translateX)*scale, (point.y+translateY)*scale);
+    //CGFloat escala = 1;
     
-    [AxesDrawer drawAxesInRect:rect originAtPoint:punto scale:escala];
+    [AxesDrawer drawAxesInRect:rect originAtPoint:punto scale:scale];
 }
+
 
 // funcion que dibuja un texto en la pantalla
 - (void)drawString:(GraphiView *)sender texto:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor
@@ -66,6 +159,7 @@
 {
     return self.points;
 }
+
 
 //- (NSString *)ecuationText
 /*- (void)ecuationText

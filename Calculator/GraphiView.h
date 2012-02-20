@@ -12,16 +12,25 @@
 
 @protocol GraphiViewDataSource
 
-- (void)drawAxis:(GraphiView *)sender;
+- (void)drawAxis:(GraphiView *)sender
+           scale:(CGFloat)scale
+            translateX:(CGFloat)translateX
+            translateY:(CGFloat)translateY
+     originPoint:(CGPoint)point;
 - (NSMutableArray *)ecuationPoints;
-//- (void)drawString:(GraphiView *)sender texto:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor;
-//- (void)ecuationText;
+- (float)returnTranslateX:(GraphiView *)sender;
+- (float)returnTranslateY:(GraphiView *)sender;
+- (CGPoint)returnOriginPoint:(GraphiView *)sender;
+
+
 
 @end
 
 @interface GraphiView : UIView
 
 @property (nonatomic) CGFloat scale;
+
+- (void)pinch:(UIPinchGestureRecognizer *)gesture;
 
 @property (nonatomic, weak) IBOutlet id  <GraphiViewDataSource> dataSource;
 

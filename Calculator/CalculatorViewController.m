@@ -65,7 +65,7 @@
                 
         double y = [self.brain executeProgram:dict];
         
-        [points addObject:[NSValue valueWithCGPoint: CGPointMake(x+160, y+200)]];
+        [points addObject:[NSValue valueWithCGPoint: CGPointMake(x, y)]];
     }
     
     return points;

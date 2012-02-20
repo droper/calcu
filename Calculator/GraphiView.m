@@ -20,31 +20,11 @@
 @synthesize scale = _scale;
 
 
-#define DEFAULT_SCALE 0.5
+#define DEFAULT_SCALE 1
 
+#define originX 160
+#define originY 200
 
-- (void)drawEcuation:(CGContextRef)context
-              ecuationPoints:(NSMutableArray *)points
-{
-    for (int i = 0; i < [points count]-1; i=i+1) 
-    {   
-        CGContextMoveToPoint(context, 
-                             [(NSValue *)[points objectAtIndex:i] CGPointValue].x, 
-                             [(NSValue *)[points objectAtIndex:i] CGPointValue].y);
-        /*CGContextAddCurveToPoint(context, 
-            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x, 
-            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y, 
-            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x,
-            [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y, [(NSValue *)[points objectAtIndex:i+2] CGPointValue].x, [(NSValue *)[points objectAtIndex:i+2] CGPointValue].y);*/
-        CGContextAddLineToPoint(context,
-                [(NSValue *)[points objectAtIndex:i+1] CGPointValue].x, 
-                [(NSValue *)[points objectAtIndex:i+1] CGPointValue].y);
-    }
-    
-	CGContextStrokePath(context);
-    
-    UIGraphicsPopContext();
-}
 
 - (CGFloat)scale
 {
@@ -55,11 +35,22 @@
     }
 }
 
+
 - (void)setScale:(CGFloat)scale
 {
     if (scale != _scale) {
         _scale = scale;
         [self setNeedsDisplay]; // any time our scale changes, call for redraw
+    }
+}
+
+
+- (void)pinch:(UIPinchGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        self.scale *= gesture.scale; // adjust our scale
+        gesture.scale = 1;           // reset gestures scale to 1 (so future changes are incremental, not cumulative)
     }
 }
 
@@ -84,67 +75,50 @@
 }
 
 
+- (void)drawEcuation:(CGContextRef)context
+      ecuationPoints:(NSMutableArray *)points
+                size:(CGFloat)size
+                translateX:(CGFloat)translateX
+          translateY:(CGFloat)translateY
+         originPoint:(CGPoint)originPoint
+{
+    
+    UIGraphicsPushContext(context);
+    CGContextBeginPath(context);
+    
+    for (int i = 0; i < [points count]-1; i=i+1) 
+    {   
+        CGContextMoveToPoint(context, 
+                             ([(NSValue *)[points objectAtIndex:i] CGPointValue].x+originPoint.x+translateX)*size, 
+                             ([(NSValue *)[points objectAtIndex:i] CGPointValue].y+originPoint.y+translateY)*size);
+        
+        CGContextAddLineToPoint(context,
+                                ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].x+originPoint.x+translateX)*size, 
+                                ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].y+originPoint.y+translateY)*size);
+    }
+    
+	CGContextStrokePath(context);
+    
+    UIGraphicsPopContext();
+}
+
+
 
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    /*CGPoint midPoint; // center of our bounds in our coordinate system
-    midPoint.x = self.bounds.origin.x + self.bounds.size.width/2;
-    midPoint.y = self.bounds.origin.y + self.bounds.size.height/2;
-    
-    CGFloat size = self.bounds.size.width / 2;
-    if (self.bounds.size.height < self.bounds.size.width) size = self.bounds.size.height / 2;
-    size *= self.scale; // scale is percentage of full view size
-    
-    CGContextSetLineWidth(context, 5.0);
-    [[UIColor greenColor] setStroke];
-    
+    NSLog(@"ESTE ES EL SCALE %f",self.scale);
 
+    float translateX = [self.dataSource returnTranslateX:self];
+    float translateY = [self.dataSource returnTranslateY:self];
     
-#define EYE_H 0.35
-#define EYE_V 0.35
-#define EYE_RADIUS 0.10
+    NSLog(@"ESTE ES EL TRANSLATE %f",translateX);
     
-    CGPoint eyePoint;
-    eyePoint.x = midPoint.x - size * EYE_H;
-    eyePoint.y = midPoint.y - size * EYE_V;
+    CGPoint originPoint = [self.dataSource returnOriginPoint:self];
     
-
-    
-#define MOUTH_H 0.45
-#define MOUTH_V 0.40
-#define MOUTH_SMILE 0.25
-    
-    CGPoint mouthStart;
-    mouthStart.x = midPoint.x - MOUTH_H * size;
-    mouthStart.y = midPoint.y + MOUTH_V * size;
-    CGPoint mouthEnd = mouthStart;
-    mouthEnd.x += MOUTH_H * size * 2;
-    CGPoint mouthCP1 = mouthStart;
-    mouthCP1.x += MOUTH_H * size * 2/3;
-    CGPoint mouthCP2 = mouthEnd;
-    mouthCP2.x -= MOUTH_H * size * 2/3;*/
-    
-   /* float smile = [self.dataSource smileForFaceView:self]; // delegate our View's data
-    if (smile < -1) smile = -1;
-    if (smile > 1) smile = 1;
-    
-    CGFloat smileOffset = MOUTH_SMILE * size * smile;
-    mouthCP1.y += smileOffset;
-    mouthCP2.y += smileOffset;
-    */
-    
-    //CGContextBeginPath(context);
-    //CGContextMoveToPoint(context, mouthStart.x, mouthStart.y);
-    //CGContextAddCurveToPoint(context, mouthCP1.x, mouthCP1.y, mouthCP2.x, mouthCP2.y, mouthEnd.x, mouthEnd.y); // bezier curve
-    //CGContextMoveToPoint(context, 10, 50);
-    //CGContextAddCurveToPoint(context, 10, 100, 10, 100, 10, 200); // 
-   // CGContextStrokePath(context);
-
-    [self.dataSource drawAxis:self];
-    [self drawEcuation:context ecuationPoints:[self.dataSource ecuationPoints]];
-    //[self.dataSource drawString:self texto:@"Texto" atPoint:CGPointMake(160, 200) withAnchor:5];
+    [self.dataSource drawAxis:self scale:self.scale translateX:translateX translateY:translateY originPoint:originPoint];
+    [self drawEcuation:context ecuationPoints:[self.dataSource ecuationPoints] size:self.scale translateX:translateX translateY:translateY originPoint:originPoint];
 }
 
 
