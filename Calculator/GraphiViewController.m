@@ -35,7 +35,7 @@
 - (CGPoint)originPoint
 {
     if (!_originPoint.x || !_originPoint.y) {
-        return CGPointMake(originX, originY); // don't allow zero scale
+        return CGPointMake(originX, originY); // don't allow zero point
     } else {
         return _originPoint;
     }
@@ -105,7 +105,7 @@
         CGPoint translation = [gesture translationInView:self.graphiView];
         self.translateX -= translation.x;
         self.translateY -= translation.y;
-        //self.happiness -= translation.y / 2; // will update FaceView via setHappiness:
+
         [gesture setTranslation:CGPointZero inView:self.graphiView];
     }
 }
@@ -113,8 +113,10 @@
 - (void)handleTripleTap:(UITapGestureRecognizer *)gesture
 {
     CGPoint point = [gesture locationInView:self.graphiView];
-    
+        
     self.originPoint = CGPointMake(point.x, point.y);
+    self.translateX = 0;
+    self.translateY = 0;
 }
 
 
@@ -142,31 +144,17 @@
 
 {
     CGRect rect = CGRectMake(0,0, 640, 960);
-    CGPoint punto = CGPointMake((point.x+translateX)*scale, (point.y+translateY)*scale);
+    //Multiplicamos el translate por la escala pero mantenemos el punto origen
+    CGPoint punto = CGPointMake((translateX)*scale + point.x, (translateY)*scale + point.y);
     //CGFloat escala = 1;
     
     [AxesDrawer drawAxesInRect:rect originAtPoint:punto scale:scale];
-}
-
-
-// funcion que dibuja un texto en la pantalla
-- (void)drawString:(GraphiView *)sender texto:(NSString *)text atPoint:(CGPoint)location withAnchor:(int)anchor
-{
-    [AxesDrawer drawString:text atPoint:location withAnchor:anchor];
 }
 
 - (NSMutableArray *)ecuationPoints
 {
     return self.points;
 }
-
-
-//- (NSString *)ecuationText
-/*- (void)ecuationText
-{
-    //return self.ecuationText;
-    NSLog(@"ETIQUETA %@",self.ecuationTextLabel.text);
-}*/
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

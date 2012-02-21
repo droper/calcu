@@ -10,8 +10,6 @@
 
 @interface GraphiView()
 
-
-    
 @end
 
 @implementation GraphiView
@@ -89,19 +87,18 @@
     for (int i = 0; i < [points count]-1; i=i+1) 
     {   
         CGContextMoveToPoint(context, 
-                             ([(NSValue *)[points objectAtIndex:i] CGPointValue].x+originPoint.x+translateX)*size, 
-                             ([(NSValue *)[points objectAtIndex:i] CGPointValue].y+originPoint.y+translateY)*size);
+                             ([(NSValue *)[points objectAtIndex:i] CGPointValue].x+translateX)*size+originPoint.x, 
+                             ([(NSValue *)[points objectAtIndex:i] CGPointValue].y+translateY)*size+originPoint.y);
         
         CGContextAddLineToPoint(context,
-                                ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].x+originPoint.x+translateX)*size, 
-                                ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].y+originPoint.y+translateY)*size);
+                                ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].x+translateX)*size+originPoint.x, 
+                                ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].y+translateY)*size+originPoint.y);
     }
     
 	CGContextStrokePath(context);
     
     UIGraphicsPopContext();
 }
-
 
 
 - (void)drawRect:(CGRect)rect
@@ -113,12 +110,15 @@
     float translateX = [self.dataSource returnTranslateX:self];
     float translateY = [self.dataSource returnTranslateY:self];
     
-    NSLog(@"ESTE ES EL TRANSLATE %f",translateX);
-    
     CGPoint originPoint = [self.dataSource returnOriginPoint:self];
     
     [self.dataSource drawAxis:self scale:self.scale translateX:translateX translateY:translateY originPoint:originPoint];
     [self drawEcuation:context ecuationPoints:[self.dataSource ecuationPoints] size:self.scale translateX:translateX translateY:translateY originPoint:originPoint];
+    
+    NSLog(@"Ubicación del punto x%f e y %f",originPoint.x,originPoint.y);
+    NSLog(@"ESTE ES EL TRANSLATE X %f",translateX);
+    NSLog(@"ESTE ES EL TRANSLATE Y %f",translateY);
+
 }
 
 
