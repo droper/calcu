@@ -33,6 +33,41 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolBar = _toolBar;
 
+
+// Save the user defaults of origin point
+-(void)saveOriginPointToUserDefaults:(CGPoint)originPoint                        
+{
+	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+	if (standardUserDefaults) {
+		[standardUserDefaults setInteger:originPoint.x forKey:@"originPointX"];
+		[standardUserDefaults setInteger:originPoint.y forKey:@"originPointY"];
+
+		[standardUserDefaults synchronize];
+	}
+}
+
+//Retrieves user defaults
+
+-(CGPoint)retrieveOriginPointFromUserDefaults
+{
+	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+	CGPoint originPoint;
+	
+	if ([standardUserDefaults integerForKey:@"originPointX"] &&
+        [standardUserDefaults integerForKey:@"originPointY"]) 
+    {
+		originPoint = CGPointMake([standardUserDefaults integerForKey:@"originPointX"],
+                                  [standardUserDefaults integerForKey:@"originPointY"]);
+        return originPoint;
+    }
+    else
+    {
+        return CGPointMake(originX, originY);
+    }
+}
+
+
 - (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
     if (_splitViewBarButtonItem != splitViewBarButtonItem){
@@ -129,6 +164,8 @@
     self.originPoint = CGPointMake(point.x, point.y);
     self.translateX = 0;
     self.translateY = 0;
+    
+    [self saveOriginPointToUserDefaults:self.originPoint];
 }
 
 
@@ -144,7 +181,7 @@
 
 - (CGPoint)returnOriginPoint:(GraphiView *)sender
 {
-    return self.originPoint;
+    return [self retrieveOriginPointFromUserDefaults];//self.originPoint;
 }
 
 // Funcion que dibuja los ejes cartesianos
