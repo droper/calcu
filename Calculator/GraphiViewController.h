@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GraphiView.h"
+#import "SplitViewBarButtonItemPresenter.h"
 
-@interface GraphiViewController : UIViewController
+@interface GraphiViewController : UIViewController <SplitViewBarButtonItemPresenter>
 
 @property (weak, nonatomic) IBOutlet UILabel *ecuationTextLabel;
 

@@ -84,15 +84,19 @@
     UIGraphicsPushContext(context);
     CGContextBeginPath(context);
     
-    for (int i = 0; i < [points count]-1; i=i+1) 
-    {   
-        CGContextMoveToPoint(context, 
+    if ([points count] > 0)
+    {
+    
+        for (int i = 0; i < [points count]-1; i=i+1) 
+        {           
+            CGContextMoveToPoint(context, 
                              ([(NSValue *)[points objectAtIndex:i] CGPointValue].x+translateX)*size+originPoint.x, 
                              ([(NSValue *)[points objectAtIndex:i] CGPointValue].y+translateY)*size+originPoint.y);
         
-        CGContextAddLineToPoint(context,
+            CGContextAddLineToPoint(context,
                                 ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].x+translateX)*size+originPoint.x, 
                                 ([(NSValue *)[points objectAtIndex:i+1] CGPointValue].y+translateY)*size+originPoint.y);
+        }
     }
     
 	CGContextStrokePath(context);

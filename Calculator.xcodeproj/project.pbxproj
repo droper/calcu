@@ -45,6 +45,7 @@
 		2FD3AC4A14DF6693003B663F /* GraphiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphiViewController.h; sourceTree = "<group>"; };
 		2FD3AC4B14DF6693003B663F /* GraphiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphiViewController.m; sourceTree = "<group>"; };
 		EB40CEE314F37AC500F0F309 /* ipad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ipad.storyboard; sourceTree = "<group>"; };
+		EB83D08114F618A1009EC273 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 				2F3BC37314BCAF1900C570C1 /* CalculatorBrain.h */,
 				2F3BC37414BCAF1900C570C1 /* CalculatorBrain.m */,
 				2FBB230914DF589C0026842A /* AxesDrawer.h */,
+				EB83D08114F618A1009EC273 /* SplitViewBarButtonItemPresenter.h */,
 				2FBB230A14DF589C0026842A /* AxesDrawer.m */,
 				2F3BC35C14BCA1A200C570C1 /* Supporting Files */,
 			);

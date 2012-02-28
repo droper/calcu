@@ -18,8 +18,7 @@
 @property (nonatomic) float translateX;
 @property (nonatomic) float translateY;
 @property (nonatomic) CGPoint originPoint;
-
-
+@property (nonatomic, weak) IBOutlet UIToolbar *toolBar;
 
 @end
 
@@ -31,6 +30,19 @@
 @synthesize translateX = _translateX;
 @synthesize translateY = _translateY;
 @synthesize originPoint = _originPoint;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+@synthesize toolBar = _toolBar;
+
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    if (_splitViewBarButtonItem != splitViewBarButtonItem){
+        NSMutableArray *toolbarItems = [self.toolBar.items mutableCopy];
+        if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
+        if (splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+        self.toolBar.items = toolbarItems;
+        _splitViewBarButtonItem = splitViewBarButtonItem;
+    }
+}
 
 - (CGPoint)originPoint
 {
