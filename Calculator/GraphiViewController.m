@@ -9,6 +9,8 @@
 #import "GraphiViewController.h"
 #import "GraphiView.h"
 #import "AxesDrawer.h"
+#import "CalculatorBrain.h"
+#import "CalculatorProgramsTableViewController.h"
 
 #define originX 160
 #define originY 200
@@ -223,6 +225,36 @@
   //  [super viewDidUnload];
 //}
 
+#define FAVORITES_KEY @"CalculatorGraphViewController.Favorites"
+
+
+- (IBAction)addToFavorites:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
+    if (!favorites) favorites = [NSMutableArray array];
+    [favorites addObject:self.points];
+    NSLog(@"points %@", self.points);
+    
+    [defaults setObject:favorites forKey:FAVORITES_KEY];
+    [defaults synchronize];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Show Favorite Graphs"]) {
+        // this if statement added after lecture to prevent multiple popovers
+        // appearing if the user keeps touching the Favorites button over and over
+        // simply remove the last one we put up each time we segue to a new one
+        //if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+        //    UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
+            //[self.popoverController dismissPopoverAnimated:YES];
+            //self.popoverController = popoverSegue.popoverController; // might want to be popover's delegate and self.popoverController = nil on dismiss?
+      //  }
+        NSArray *programs = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY];
+        [segue.destinationViewController setPrograms:programs];
+        //[segue.destinationViewController setDelegate:self];
+    }
+}
 
 - (void)viewDidUnload {
     [self setEcuationTextLabel:nil];

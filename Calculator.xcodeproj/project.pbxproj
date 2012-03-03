@@ -16,6 +16,7 @@
 		2F3BC36C14BCA1A200C570C1 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC36B14BCA1A200C570C1 /* CalculatorViewController.m */; };
 		2F3BC37214BCA30100C570C1 /* iphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BC36714BCA1A200C570C1 /* iphone.storyboard */; };
 		2F3BC37514BCAF1900C570C1 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC37414BCAF1900C570C1 /* CalculatorBrain.m */; };
+		2F994FB915018FA700D382B1 /* CalculatorProgramsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F994FB815018FA700D382B1 /* CalculatorProgramsTableViewController.m */; };
 		2FABC6DC14E02E1100F0172A /* GraphiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FABC6DB14E02E1100F0172A /* GraphiView.m */; };
 		2FBB230B14DF589C0026842A /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBB230A14DF589C0026842A /* AxesDrawer.m */; };
 		2FD3AC4D14DF6693003B663F /* GraphiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3AC4B14DF6693003B663F /* GraphiViewController.m */; };
@@ -38,6 +39,8 @@
 		2F3BC36B14BCA1A200C570C1 /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
 		2F3BC37314BCAF1900C570C1 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		2F3BC37414BCAF1900C570C1 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
+		2F994FB715018FA700D382B1 /* CalculatorProgramsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorProgramsTableViewController.h; sourceTree = "<group>"; };
+		2F994FB815018FA700D382B1 /* CalculatorProgramsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorProgramsTableViewController.m; sourceTree = "<group>"; };
 		2FABC6DA14E02E1100F0172A /* GraphiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphiView.h; sourceTree = "<group>"; };
 		2FABC6DB14E02E1100F0172A /* GraphiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphiView.m; sourceTree = "<group>"; };
 		2FBB230914DF589C0026842A /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				2F3BC37314BCAF1900C570C1 /* CalculatorBrain.h */,
 				2F3BC37414BCAF1900C570C1 /* CalculatorBrain.m */,
 				2FBB230914DF589C0026842A /* AxesDrawer.h */,
+				2F994FB715018FA700D382B1 /* CalculatorProgramsTableViewController.h */,
+				2F994FB815018FA700D382B1 /* CalculatorProgramsTableViewController.m */,
 				EB83D08114F618A1009EC273 /* SplitViewBarButtonItemPresenter.h */,
 				2FBB230A14DF589C0026842A /* AxesDrawer.m */,
 				2F3BC35C14BCA1A200C570C1 /* Supporting Files */,
@@ -193,6 +198,7 @@
 				2FBB230B14DF589C0026842A /* AxesDrawer.m in Sources */,
 				2FD3AC4D14DF6693003B663F /* GraphiViewController.m in Sources */,
 				2FABC6DC14E02E1100F0172A /* GraphiView.m in Sources */,
+				2F994FB915018FA700D382B1 /* CalculatorProgramsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
