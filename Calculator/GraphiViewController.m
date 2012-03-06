@@ -15,7 +15,7 @@
 #define originX 160
 #define originY 200
 
-@interface GraphiViewController() <GraphiViewDataSource>
+@interface GraphiViewController() <GraphiViewDataSource, CalculatorProgramsTableViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet GraphiView *graphiView;
 @property (nonatomic) float translateX;
 @property (nonatomic) float translateY;
@@ -24,7 +24,8 @@
 
 @end
 
-@implementation GraphiViewController
+@implementation GraphiViewController 
+
 @synthesize graphiView = _graphiView;
 @synthesize ecuationTextLabel = _ecuationTextLabel;
 @synthesize ecuationText = _ecuationText;
@@ -225,19 +226,49 @@
   //  [super viewDidUnload];
 //}
 
-#define FAVORITES_KEY @"CalculatorGraphViewController.Favorites"
+#define FAVORITES_KEY_X @"CalculatorGraphViewController.FavoritesX"
+#define FAVORITES_KEY_Y @"CalculatorGraphViewController.FavoritesY"
+#define FAVORITES_KEY_E @"CalculatorGraphViewController.Ecuation"
 
 
 - (IBAction)addToFavorites:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
-    if (!favorites) favorites = [NSMutableArray array];
-    [favorites addObject:self.points];
-    NSLog(@"points %@", self.points);
+    NSMutableArray *favoritesX = [[defaults objectForKey:FAVORITES_KEY_X] mutableCopy];
+    NSMutableArray *favoritesY = [[defaults objectForKey:FAVORITES_KEY_Y] mutableCopy];
+    NSMutableArray *ecuationArray = [[defaults objectForKey:FAVORITES_KEY_E] mutableCopy];
     
-    [defaults setObject:favorites forKey:FAVORITES_KEY];
+    if (!favoritesX) favoritesX = [NSMutableArray array];
+    if (!favoritesY) favoritesY = [NSMutableArray array];
+    if (!ecuationArray) ecuationArray = [NSMutableArray array];
+   
+
+    NSMutableArray *favoritesXM = [[NSMutableArray alloc] init];
+    NSMutableArray *favoritesYM = [[NSMutableArray alloc] init];
+    
+    //Dividimos los puntos en X e Y en dos arreglos
+    for (int i=0;i<[self.points count];++i)
+    {
+        [favoritesXM addObject:[NSNumber numberWithFloat:[[self.points objectAtIndex:i] CGPointValue].x]];
+        [favoritesYM addObject:[NSNumber numberWithFloat:[[self.points objectAtIndex:i] CGPointValue].y]];
+    }
+    
+
+    [ecuationArray addObject:self.ecuationText];
+    [favoritesX addObject:favoritesXM];
+    [favoritesY addObject:favoritesYM];
+    
+    
+    //NSLog(@"favorites %@", favoritesX);
+    [defaults setObject:ecuationArray forKey:FAVORITES_KEY_E];
+    [defaults setObject:favoritesX forKey:FAVORITES_KEY_X];
+    [defaults setObject:favoritesY forKey:FAVORITES_KEY_Y];
+    
+    NSLog(@"GUARDAMOS DEFAULTS ");
+
+
     [defaults synchronize];
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -245,16 +276,35 @@
         // this if statement added after lecture to prevent multiple popovers
         // appearing if the user keeps touching the Favorites button over and over
         // simply remove the last one we put up each time we segue to a new one
-        //if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
-        //    UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
-            //[self.popoverController dismissPopoverAnimated:YES];
-            //self.popoverController = popoverSegue.popoverController; // might want to be popover's delegate and self.popoverController = nil on dismiss?
-      //  }
-        NSArray *programs = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY];
-        [segue.destinationViewController setPrograms:programs];
+        /*if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+            UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
+            [self.popoverController dismissPopoverAnimated:YES];
+            self.popoverController = popoverSegue.popoverController; // might want to be popover's delegate and self.popoverController = nil on dismiss?
+        }*/
+        NSArray *programsx = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_X];
+        NSArray *programsy = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_Y];
+        NSArray *ecuationArray = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_E];
+
+        
+        NSLog(@"ARRAY PROGRAMSX %@", programsx);
+        [segue.destinationViewController setProgramsx:programsx];
+        [segue.destinationViewController setProgramsy:programsy];
+        [segue.destinationViewController setEcuationText:ecuationArray];
+
+        [segue.destinationViewController setDelegate:self];
+        
+        NSLog(@"Termina la prearacion de la secuencia");
+
         //[segue.destinationViewController setDelegate:self];
     }
 }
+
+
+- (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender choseProgram:(NSArray *)program
+{
+    self.points = program;
+}
+
 
 - (void)viewDidUnload {
     [self setEcuationTextLabel:nil];

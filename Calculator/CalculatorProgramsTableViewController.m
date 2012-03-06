@@ -13,14 +13,36 @@
 @implementation CalculatorProgramsTableViewController
 
 
+@synthesize programsx = _programsx;
+@synthesize programsy = _programsy;
+@synthesize ecuationText = _ecuationText;
+@synthesize delegate = _delegate;
 
-@synthesize programs = _programs;
 
-- (void)setPrograms:(NSArray *)programs
+- (void)setProgramsx:(NSArray *)programsx
 {
-    _programs = programs;
+    _programsx = programsx;
+    NSLog(@"NUMERO DE ELEMENTOS %i",[programsx count]);
+    //NSLog(@"ELEMENTOS %@",programsx );
+    //NSLog(@"NUMERO DE ELEMENTOS %i",[programsx count]);
+
     [self.tableView reloadData];
 }
+
+- (void)setProgramsy:(NSArray *)programsy
+{
+    _programsy = programsy;
+    //NSLog(@"NUMERO DE ELEMENTOS %@",[programsy count]);
+    [self.tableView reloadData];
+}
+
+
+- (void)setEcuationtext:(NSArray *)ecuationText
+{
+    _ecuationText = ecuationText;
+    [self.tableView reloadData];
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -91,9 +113,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    NSLog(@"NUMERO DE CELDAS %@",[self.programs count]);
-    return 1;
-    //return [self.programs count];
+    //NSLog(@"NUMERO DE CELDAS %@",[self.programsx count]);
+    //return 1;
+    return [self.programsx count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,7 +130,7 @@
     // Configure the cell...
     //id program = [self.programs objectAtIndex:indexPath.row];
     //cell.textLabel.text = [@"y = " stringByAppendingString:[CalculatorBrain descriptionOfProgram:program]];
-    cell.textLabel.text = @"y = ";
+    cell.textLabel.text = [@"y = " stringByAppendingString:[self.ecuationText objectAtIndex:indexPath.row]];
 
     return cell;
 }
@@ -156,13 +178,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    id programx = [self.programsx objectAtIndex:indexPath.row];
+    id programy = [self.programsy objectAtIndex:indexPath.row];
+    
+    NSMutableArray *points = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [programx count]; i++)
+    {       
+        [points addObject:[NSValue valueWithCGPoint: CGPointMake([(NSNumber *)[programx objectAtIndex:i] floatValue],
+                                                                 [(NSNumber *)[programy objectAtIndex:i] floatValue])]];
+    }
+    
+    [self.delegate calculatorProgramsTableViewController:self choseProgram:points];
 }
 
 @end

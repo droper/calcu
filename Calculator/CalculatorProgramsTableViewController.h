@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class CalculatorProgramsTableViewController;
+
+@protocol CalculatorProgramsTableViewControllerDelegate
+
+@optional
+- (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender choseProgram:(NSArray *)program;
+@end
+
 @interface CalculatorProgramsTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *programs; // of CalculatorBrain programs
+@property (nonatomic, strong) NSArray *programsx; // of CalculatorBrain programs
+@property (nonatomic, strong) NSArray *programsy; // of CalculatorBrain programs
+@property (nonatomic, strong) NSArray *ecuationText; //ecuation description
+
+@property (nonatomic, weak) id <CalculatorProgramsTableViewControllerDelegate> delegate;
 
 @end

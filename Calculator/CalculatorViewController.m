@@ -62,7 +62,8 @@
     
     for (float x=-160; x<400;x=x+1)
     {
-        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:                                      [NSNumber numberWithDouble:(double)x], @"x", nil];
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:                                     
+                              [NSNumber numberWithDouble:(double)x], @"x", nil];
                 
         double y = [self.brain executeProgram:dict];
         
