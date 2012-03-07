@@ -10,10 +10,12 @@
 
 @class CalculatorProgramsTableViewController;
 
-@protocol CalculatorProgramsTableViewControllerDelegate
+@protocol CalculatorProgramsTableViewControllerDelegate <NSObject> // added <NSObject> after lecture so we can do respondsToSelector: on the delegate
 
 @optional
 - (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender choseProgram:(NSArray *)program;
+- (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender
+                               deletedRow:(int)row; // added after lecture to support deleting from table
 @end
 
 @interface CalculatorProgramsTableViewController : UITableViewController

@@ -22,10 +22,6 @@
 - (void)setProgramsx:(NSArray *)programsx
 {
     _programsx = programsx;
-    NSLog(@"NUMERO DE ELEMENTOS %i",[programsx count]);
-    //NSLog(@"ELEMENTOS %@",programsx );
-    //NSLog(@"NUMERO DE ELEMENTOS %i",[programsx count]);
-
     [self.tableView reloadData];
 }
 
@@ -112,9 +108,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    //NSLog(@"NUMERO DE CELDAS %@",[self.programsx count]);
-    //return 1;
     return [self.programsx count];
 }
 
@@ -135,28 +128,24 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        [self.delegate calculatorProgramsTableViewController:self deletedRow:indexPath.row];
     }   
 }
-*/
+
+// added after lecture
+// don't allow deletion if the delegate does not support it too!
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.delegate respondsToSelector:@selector(calculatorProgramsTableViewController: deletedRow:)];
+}
+
 
 /*
 // Override to support rearranging the table view.

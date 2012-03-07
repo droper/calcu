@@ -175,11 +175,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352757044.287711"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
          landmarkName = "-retrieveOriginPointFromUserDefaults"
          landmarkType = "5">
       </FileBreakpoint>
@@ -257,11 +257,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352757044.287711"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
+         startingLineNumber = "46"
+         endingLineNumber = "46"
          landmarkName = "-saveOriginPointToUserDefaults:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -271,11 +271,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352757044.287711"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
          landmarkName = "-saveOriginPointToUserDefaults:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -299,11 +299,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/CalculatorProgramsTableViewController.h"
-         timestampString = "352757044.287711"
+         timestampString = "352833133.622352"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
          landmarkName = "@interface CalculatorProgramsTableViewController"
          landmarkType = "2">
       </FileBreakpoint>
@@ -355,11 +355,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352757044.287711"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "252"
-         endingLineNumber = "252"
+         startingLineNumber = "256"
+         endingLineNumber = "256"
          landmarkName = "-addToFavorites:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -369,11 +369,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352757044.287711"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "238"
-         endingLineNumber = "238"
+         startingLineNumber = "242"
+         endingLineNumber = "242"
          landmarkName = "-addToFavorites:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -383,11 +383,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352757044.287711"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "292"
-         endingLineNumber = "292"
+         startingLineNumber = "296"
+         endingLineNumber = "296"
          landmarkName = "-prepareForSegue:sender:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -397,11 +397,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352756834.362297"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "28"
-         endingLineNumber = "28"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
          landmarkName = "@implementation GraphiViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -411,13 +411,41 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calculator/GraphiViewController.m"
-         timestampString = "352756834.840249"
+         timestampString = "352829526.528903"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
          landmarkName = "@implementation GraphiViewController"
          landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calculator/GraphiViewController.m"
+         timestampString = "352829498.704228"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
+         landmarkName = "popoverController"
+         landmarkType = "19">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calculator/GraphiViewController.m"
+         timestampString = "352833133.622352"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "331"
+         endingLineNumber = "331"
+         landmarkName = "-calculatorProgramsTableViewController:deletedRow:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

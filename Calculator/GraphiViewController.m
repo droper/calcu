@@ -22,6 +22,9 @@
 @property (nonatomic) CGPoint originPoint;
 @property (nonatomic, weak) IBOutlet UIToolbar *toolBar;
 
+@property (nonatomic, strong) UIPopoverController *popoverController; // added after lecture to prevent multiple popovers
+
+
 @end
 
 @implementation GraphiViewController 
@@ -35,6 +38,7 @@
 @synthesize originPoint = _originPoint;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolBar = _toolBar;
+@synthesize popoverController;
 
 
 // Save the user defaults of origin point
@@ -276,11 +280,11 @@
         // this if statement added after lecture to prevent multiple popovers
         // appearing if the user keeps touching the Favorites button over and over
         // simply remove the last one we put up each time we segue to a new one
-        /*if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
             UIStoryboardPopoverSegue *popoverSegue = (UIStoryboardPopoverSegue *)segue;
             [self.popoverController dismissPopoverAnimated:YES];
             self.popoverController = popoverSegue.popoverController; // might want to be popover's delegate and self.popoverController = nil on dismiss?
-        }*/
+        }
         NSArray *programsx = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_X];
         NSArray *programsy = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_Y];
         NSArray *ecuationArray = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_E];
@@ -294,15 +298,48 @@
         [segue.destinationViewController setDelegate:self];
         
         NSLog(@"Termina la prearacion de la secuencia");
-
-        //[segue.destinationViewController setDelegate:self];
     }
 }
 
 
 - (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender choseProgram:(NSArray *)program
 {
-    self.points = program;
+    self.points = [program mutableCopy];
+}
+
+
+// added after lecture to support deletion from the table
+// deletes the given program from NSUserDefaults (including duplicates)
+// then resets the Model of the sender
+
+- (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender
+                               deletedRow:(int)row
+{
+    NSMutableArray *programsx = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_X];
+    NSMutableArray *programsy = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_Y];
+    NSMutableArray *ecuationArray = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_E];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    /*for (id x in [defaults objectForKey:FAVORITES_KEY_X]) {
+        if (![ isEqualToString:self.ecuationText]) {
+            [favorites addObject:program];
+        }
+    }*/
+    
+    [programsx removeObjectAtIndex:row];
+    [programsy removeObjectAtIndex:row];
+    [ecuationArray removeObjectAtIndex:row];
+
+    
+    [defaults setObject:programsx forKey:FAVORITES_KEY_X];
+    [defaults setObject:programsy forKey:FAVORITES_KEY_Y];
+    [defaults setObject:ecuationArray forKey:FAVORITES_KEY_E];
+
+    [defaults synchronize];
+    sender.programsx = programsx;
+    sender.programsy = programsy;
+    sender.ecuationText = ecuationArray;
 }
 
 
