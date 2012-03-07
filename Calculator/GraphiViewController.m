@@ -305,6 +305,12 @@
 - (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender choseProgram:(NSArray *)program
 {
     self.points = [program mutableCopy];
+    
+    // if you wanted to close the popover when a graph was selected
+    // you could uncomment the following line
+    // you'd probably want to set self.popoverController = nil after doing so
+    [self.popoverController dismissPopoverAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES]; // added after lecture to support iPhone
 }
 
 
@@ -315,9 +321,9 @@
 - (void)calculatorProgramsTableViewController:(CalculatorProgramsTableViewController *)sender
                                deletedRow:(int)row
 {
-    NSMutableArray *programsx = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_X];
-    NSMutableArray *programsy = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_Y];
-    NSMutableArray *ecuationArray = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_E];
+    NSMutableArray *programsx = [[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_X] mutableCopy];
+    NSMutableArray *programsy = [[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_Y]mutableCopy ];
+    NSMutableArray *ecuationArray = [[[NSUserDefaults standardUserDefaults] objectForKey:FAVORITES_KEY_E] mutableCopy];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     

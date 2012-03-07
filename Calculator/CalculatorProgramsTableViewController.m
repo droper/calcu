@@ -134,6 +134,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSLog(@"ROW %i",indexPath.row);
         [self.delegate calculatorProgramsTableViewController:self deletedRow:indexPath.row];
     }   
 }
